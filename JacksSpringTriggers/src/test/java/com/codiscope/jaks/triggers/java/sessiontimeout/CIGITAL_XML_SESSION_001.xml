@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- <Match> <Prefix>jee</Prefix> <Namespace><![CDATA[http://java.sun.com/xml/ns/javaee]]></Namespace> 
+	<RootElement><![CDATA[web-app]]></RootElement> <XPath><![CDATA[/jee:web-app[not(jee:session-config)] 
+	| /jee:web-app/jee:session-config[not(jee:session-timeout)] | /jee:web-app/jee:session-config/jee:session-timeout[number(normalize-space(text()))>30 
+	or normalize-space(text())='']]]></XPath> </Match>
+	
+-->
+<web-app id="WebApp_ID" version="2.4"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_4.xsd">
+	<display-name>Default_Rulepack_Engine_Tests</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+	<session-config>
+		<session-timeout>50</session-timeout>
+	</session-config>
+	
+	<session-config>
+		<session-timeout></session-timeout>
+	</session-config>
+	
+	<session-config>
+		
+	</session-config>
+</web-app>
