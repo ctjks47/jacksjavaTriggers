@@ -40,6 +40,12 @@ public class CIGITAL_JAVA_LDAP_INJECTION_01 {
         NamingEnumeration<SearchResult> results = ctx.search("", searchFilter, searchControls);
 	}
 	
+	public String webMthod1() {
+		String s01 = request.getRemoteHost();
+		return s01;
+	}
+}
+/*
 	public void testFile(DirContext ctx, SearchControls searchControls) throws NamingException {
 		String searchFilter = "(&(objectClass=group)(objectSid=" + fsMethod() + "))";
         NamingEnumeration<SearchResult> results = ctx.search("", searchFilter, searchControls);
@@ -53,11 +59,6 @@ public class CIGITAL_JAVA_LDAP_INJECTION_01 {
 	public void testPrivate(DirContext ctx, SearchControls searchControls) throws NamingException {
 		String searchFilter = "(&(objectClass=group)(objectSid=" + priMethod() + "))";
         NamingEnumeration<SearchResult> results = ctx.search("", searchFilter, searchControls);
-	}
-	
-	public String webMthod1() {
-		String s01 = request.getRemoteHost();
-		return s01;
 	}
 	
 	public String fsMethod() {
@@ -98,4 +99,4 @@ public class CIGITAL_JAVA_LDAP_INJECTION_01 {
 		String s01 = request.getParameter("password");
 		return s01;
 	}
-}
+*/

@@ -30,20 +30,20 @@ import javax.servlet.http.HttpServletRequest;
  </Rule>
  */
 public class CIGITAL_COMMAND_INJECTION_EXEC {
-	// DatabaseSource databasesource = new DatabaseSource();
 	HttpServletRequest request = null;
-	//FileSource filesource = new FileSource();
-	//WebSource websource = new WebSource();
-	//PrivateSource privatesource = new PrivateSource();
-
 	Runtime rt = Runtime.getRuntime();
 
 	public void testWeb() throws IOException {
 		// rt.exec(websource.method1());
 		rt.exec(webMethod());
 	}
-
-	public void testDB() throws IOException {
+	public String webMethod() {
+		String s01 = request.getRemoteHost();
+		return s01;
+	}
+	
+}
+	/* public void testDB() throws IOException {
 		// rt.exec(databasesource.method1());
 		rt.exec(dbsMethod());
 	}
@@ -71,10 +71,6 @@ public class CIGITAL_COMMAND_INJECTION_EXEC {
 		return name;
 	}
 	
-	public String webMethod() {
-		String s01 = request.getRemoteHost();
-		return s01;
-	}
 	public String priMethod() {
 		String s01 = request.getParameter("password");
 		return s01;
@@ -100,5 +96,5 @@ public class CIGITAL_COMMAND_INJECTION_EXEC {
 			//
 		}
 		return strContent.toString();
-	}
-}
+	} */
+

@@ -47,6 +47,13 @@ public class CIGITAL_XPATH_INJECTION_01 {
 		XPathExpression expr = xpath.compile(webMethod());
 	}
 
+	
+	public String webMethod() {
+		String s01 = request.getRemoteHost();
+		return s01;
+	}
+}
+	/*
 	public void testDB() throws XPathExpressionException {
 		XPath xpath = getXpath();
 		XPathExpression expr = xpath.compile(dbsMethod());
@@ -75,10 +82,6 @@ public class CIGITAL_XPATH_INJECTION_01 {
 		return name;
 	}
 	
-	public String webMethod() {
-		String s01 = request.getRemoteHost();
-		return s01;
-	}
 	public String priMethod() {
 		String s01 = request.getParameter("password");
 		return s01;
@@ -105,4 +108,4 @@ public class CIGITAL_XPATH_INJECTION_01 {
 		}
 		return strContent.toString();
 	}
-}
+} */

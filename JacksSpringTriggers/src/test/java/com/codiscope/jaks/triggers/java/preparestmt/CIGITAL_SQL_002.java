@@ -52,7 +52,13 @@ public class CIGITAL_SQL_002 {
 		}
 	}
 	
-	public void test2(int accountID) {
+	public String webMethod() {
+		String s01 = request.getRemoteHost();
+		return s01;
+	}
+}
+	
+/*	public void test2(int accountID) {
 		try {
 			Connection conn = DriverManager.getConnection(connString, "", "");
 			Statement stmt = conn.createStatement();
@@ -72,7 +78,7 @@ public class CIGITAL_SQL_002 {
 			stmt.execute("delete from transactions where AccountNum ="
 					+ dbsMethod());
 		} catch (Exception e) {
-			//
+			
 		}
 	}
 	
@@ -101,10 +107,7 @@ public class CIGITAL_SQL_002 {
 		return name;
 	}
 	
-	public String webMethod() {
-		String s01 = request.getRemoteHost();
-		return s01;
-	}
+	
 	public String priMethod() {
 		String s01 = request.getParameter("password");
 		return s01;
@@ -132,3 +135,4 @@ public class CIGITAL_SQL_002 {
 		return strContent.toString();
 	}
 }
+*/
