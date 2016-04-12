@@ -2,6 +2,7 @@ package com.codiscope.jaks.triggers.java.ulrredirection;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -25,13 +26,17 @@ import javax.servlet.http.HttpServletResponse;
 public class CIGITAL_JAVA_URL_REDIRECT {
 	HttpServletResponse response = null;
 	HttpServletRequest request = null;
+	
 	public void test() throws IOException {
+		
 		response.sendRedirect(webMethod());
 	}
 	
 	public String webMethod() {
-		String s01 = "http://cigital.com";
-		return s01;
+		RequestDispatcher s01 = request.getRequestDispatcher("http://cigital.com");
+		
+		return s01.toString();
 	}
 	
 }
+
