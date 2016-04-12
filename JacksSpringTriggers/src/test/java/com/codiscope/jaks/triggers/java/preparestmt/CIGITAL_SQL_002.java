@@ -39,18 +39,33 @@ public class CIGITAL_SQL_002 {
 
 	
 	private String connString = "jdbc:msql://10.10.10.1:1114/Demo";
-
-	public void test(int accountID) {
+	Connection conn;
+	Statement stmt;
+	public void testExecuteQuery(int accountID) {
 		try {
-			Connection conn = DriverManager.getConnection(connString, "", "");
-			Statement stmt = conn.createStatement();
+			 conn = DriverManager.getConnection(connString, "", "");
+			 stmt = conn.createStatement();
 
 			stmt.executeQuery("SELECT * FROM Transactions WHERE AccountNum ="
 					+ webMethod());
+			
+			stmt.executeUpdate("SELECT * FROM Transactions WHERE AccountNum ="
+					+ webMethod()); 
+			
+			stmt.execute("SELECT * FROM Transactions WHERE AccountNum ="
+					+ webMethod());
+			
+			stmt.addBatch("SELECT * FROM Transactions WHERE AccountNum ="
+					+ webMethod());
+			
+			stmt = conn.prepareStatement("SELECT * FROM Transactions where id = "
+							+ webMethod());
+			
 		} catch (Exception e) {
 			//
 		}
 	}
+	
 	
 	public String webMethod() {
 		String s01 = request.getRemoteHost();
