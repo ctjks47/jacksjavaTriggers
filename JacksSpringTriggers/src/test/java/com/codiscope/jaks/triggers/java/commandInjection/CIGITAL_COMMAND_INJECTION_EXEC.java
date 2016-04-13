@@ -1,5 +1,6 @@
 package com.codiscope.jaks.triggers.java.commandInjection;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Enumeration;
 import java.util.Map;
@@ -36,9 +37,11 @@ public class CIGITAL_COMMAND_INJECTION_EXEC {
 
 	public void testWebProcessBuilder() throws IOException {
 
+		File file = new File("in.txt");
 		new ProcessBuilder(webMethod()); // process build getting input from
 											// untrusted source
 		pb.command(webMethod()); // command taint
+		pb.directory(file);
 
 	}
 

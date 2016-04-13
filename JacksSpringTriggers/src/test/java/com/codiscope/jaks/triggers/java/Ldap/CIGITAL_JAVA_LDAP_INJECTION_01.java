@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.sql.ResultSet;
 
 import javax.naming.NamingEnumeration;
@@ -46,24 +48,27 @@ public class CIGITAL_JAVA_LDAP_INJECTION_01 {
         System.out.println(results);
 	}
 	
-	public void testWebTaintAtIndex1() {        
-	    Attributes userAttributes = new BasicAttributes("test",  webMethod());	  
+	public void testWebTaintAtIndex1() throws MalformedURLException {        
+		
+	    Attributes userAttributes = new BasicAttributes("test",webMethod());	  
 	    System.out.println(userAttributes);
 	}
 	
 
-	String[] ATTRS = { "cn", "mail", "telephonenumber" };
-	LDAPConnection ld = new LDAPConnection();
-
 	public void testWebtaintAtIndex2() throws LDAPException {
+		String[] ATTRS = { "cn", "mail", "telephonenumber" };
+		LDAPConnection ld = new LDAPConnection();
+		
         ld.search("", ld.SCOPE_SUB, webMethod(), ATTRS, false);
 	}
 		
+	
 
 	public String webMethod() {
 		String s01 = request.getRemoteHost();
 		return s01;
 	}
+	
 }
 
 

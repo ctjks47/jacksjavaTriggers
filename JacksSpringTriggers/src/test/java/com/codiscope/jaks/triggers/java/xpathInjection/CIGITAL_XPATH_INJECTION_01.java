@@ -45,6 +45,8 @@ public class CIGITAL_XPATH_INJECTION_01 {
 	public void testWeb() throws XPathExpressionException {
 		XPath xpath = getXpath();
 		XPathExpression expr = xpath.compile(webMethod());
+		
+		xpath.evaluate(webMethod(), "");
 	}
 
 	
