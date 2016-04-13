@@ -12,5 +12,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Users/sanjay.singh/Desktop/javax.servlet-5.1.11.jar"/>
+	<classpathentry kind="lib" path="C:/Users/sanjay.singh/Desktop/ldapjdk_4.1.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
