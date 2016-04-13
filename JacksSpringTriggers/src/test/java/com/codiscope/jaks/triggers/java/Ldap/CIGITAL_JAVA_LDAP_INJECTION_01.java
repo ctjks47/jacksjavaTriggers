@@ -8,10 +8,15 @@ import java.sql.ResultSet;
 
 import javax.naming.NamingEnumeration;
 import javax.naming.NamingException;
+import javax.naming.directory.Attributes;
+import javax.naming.directory.BasicAttributes;
 import javax.naming.directory.DirContext;
 import javax.naming.directory.SearchControls;
 import javax.naming.directory.SearchResult;
 import javax.servlet.http.HttpServletRequest;
+
+import netscape.ldap.LDAPConnection;
+import netscape.ldap.LDAPException;
 
 /*
  Rule:
@@ -35,68 +40,32 @@ import javax.servlet.http.HttpServletRequest;
 public class CIGITAL_JAVA_LDAP_INJECTION_01 {
 	HttpServletRequest request = null;
 		
-	public void testWeb(DirContext ctx, SearchControls searchControls) throws NamingException {
-		String searchFilter = "(&(objectClass=group)(objectSid=" + webMthod1() + "))";
+	public void testWebLdapSearchTaintAtIndex1(DirContext ctx, SearchControls searchControls) throws NamingException {
+		String searchFilter = "(&(objectClass=group)(objectSid=" + webMethod() + "))";
         NamingEnumeration<SearchResult> results = ctx.search("", searchFilter, searchControls);
+        System.out.println(results);
 	}
 	
-	public String webMthod1() {
+	public void testWebTaintAtIndex1() {        
+	    Attributes userAttributes = new BasicAttributes("test",  webMethod());	  
+	    System.out.println(userAttributes);
+	}
+	
+
+	String[] ATTRS = { "cn", "mail", "telephonenumber" };
+	LDAPConnection ld = new LDAPConnection();
+
+	public void testWebtaintAtIndex2() throws LDAPException {
+        ld.search("", ld.SCOPE_SUB, webMethod(), ATTRS, false);
+	}
+		
+
+	public String webMethod() {
 		String s01 = request.getRemoteHost();
 		return s01;
 	}
 }
-/*
-	public void testFile(DirContext ctx, SearchControls searchControls) throws NamingException {
-		String searchFilter = "(&(objectClass=group)(objectSid=" + fsMethod() + "))";
-        NamingEnumeration<SearchResult> results = ctx.search("", searchFilter, searchControls);
-	}
-	
-	public void testDB(DirContext ctx, SearchControls searchControls) throws NamingException {
-		String searchFilter = "(&(objectClass=group)(objectSid=" + dbsMethod() + "))";
-        NamingEnumeration<SearchResult> results = ctx.search("", searchFilter, searchControls);
-	}
-	
-	public void testPrivate(DirContext ctx, SearchControls searchControls) throws NamingException {
-		String searchFilter = "(&(objectClass=group)(objectSid=" + priMethod() + "))";
-        NamingEnumeration<SearchResult> results = ctx.search("", searchFilter, searchControls);
-	}
-	
-	public String fsMethod() {
 
-		File file = new File("C://test.txt");
 
-		int ch;
-		StringBuffer strContent = new StringBuffer("");
-		FileInputStream fin = null;
-		try {
-			fin = new FileInputStream(file);
-			ch = fin.read();
-			//strContent.append((char) ch);
-			strContent.append(Integer.toString(ch));
-			//fin.close();
-		} catch (FileNotFoundException e) {
-			//
-		} catch (IOException ioe) {
-			//
-		}
-		return strContent.toString();
-	}
-	
-	public String dbsMethod() {
-		String name = null;
-		try {
-			ResultSet rs = null;
-			while (rs.next()) {
-				name = name + rs.getString("Lname");
-			}
-		} catch (Exception e) {
-			//
-		}
-		return name;
-	}
-	
-	public String priMethod() {
-		String s01 = request.getParameter("password");
-		return s01;
-	}
-*/
+
+
