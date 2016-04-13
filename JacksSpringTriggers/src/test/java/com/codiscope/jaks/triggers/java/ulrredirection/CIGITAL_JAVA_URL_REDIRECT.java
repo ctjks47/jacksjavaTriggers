@@ -32,10 +32,14 @@ public class CIGITAL_JAVA_URL_REDIRECT {
 		response.sendRedirect(webMethod());
 	}
 	
+//	public String webMethod() {
+//		RequestDispatcher s01 = request.getRequestDispatcher("http://cigital.com");
+//		
+//		return s01.toString();
+//	}
 	public String webMethod() {
-		RequestDispatcher s01 = request.getRequestDispatcher("http://cigital.com");
-		
-		return s01.toString();
+		String s01 = request.getRemoteHost();
+		return s01;
 	}
 	
 }
