@@ -30,23 +30,29 @@ public class CIGITAL_COMMAND_INJECTION_EXEC {
 	Runtime rt = Runtime.getRuntime();
 	ProcessBuilder pb;
 
-	public void testWeb() throws IOException {
+	public void testExecMethod() throws IOException {
 		// rt.exec(websource.method1());
 		rt.exec(webMethod());
 	}
 
 	public void testWebProcessBuilder() throws IOException {
 
-		File file = new File("in.txt");
 		new ProcessBuilder(webMethod()); // process build getting input from
-											// untrusted source
-		pb.command(webMethod()); // command taint
-		pb.directory(file);
+	}
 
+	public void testCommandMethod(){
+		
+		pb.command(webMethod()); // command taint
+	}
+
+	public void testDirectoryMethod() {
+		File file = new File(webMethod());
+		pb.directory(file);
 	}
 
 	public String webMethod() {
 		String s01 = request.getRemoteHost();
 		return s01;
 	}
+
 }
