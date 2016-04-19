@@ -45,6 +45,11 @@ public class CIGITAL_COMMAND_INJECTION_EXEC {
 		pb.command(webMethod()); // command taint
 	}
 	
+	public void testDirectoryMethod(){
+		
+		File file = new File(webMethod());
+		pb.directory(file); // command taint;
+	}
 	public String webMethod() {
 		String s01 = request.getRemoteHost();
 		return s01;
