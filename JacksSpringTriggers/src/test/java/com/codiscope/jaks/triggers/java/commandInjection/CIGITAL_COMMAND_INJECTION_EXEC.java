@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Enumeration;
 import java.util.Map;
+import java.util.Scanner;
+
 import javax.servlet.http.HttpServletRequest;
 
 /*
@@ -27,6 +29,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class CIGITAL_COMMAND_INJECTION_EXEC {
 	HttpServletRequest request = null;
+	Scanner sc = new Scanner(System.in);
 	Runtime rt = Runtime.getRuntime();
 	ProcessBuilder pb;
 
@@ -42,7 +45,7 @@ public class CIGITAL_COMMAND_INJECTION_EXEC {
 
 	public void testCommandMethod(){
 		
-		pb.command(webMethod()); // command taint
+		pb.command(webMethod()); //   command taint
 	}
 	
 	public void testDirectoryMethod(){
